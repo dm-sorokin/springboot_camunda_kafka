@@ -20,7 +20,8 @@ Camunda process that interacts with Kafka, Postgres Database
 ## Как работает?
 
 Процесс начинается с [REST API Controller](src/main/java/ru/dmitry/springboot_camunda_kafka/controller/MessageController.java) - вызов происходит по адресу: "http://localhost:8080/kafka/send/message"
-Далее контроллер отправляет сообщение вида (значение полей генерятся рандомно)
+
+Далее контроллер отправляет сообщение вида (значения полей генерятся рандомно)
 
 ```
 {
@@ -56,6 +57,7 @@ Camunda process that interacts with Kafka, Postgres Database
 ```
 
 Затем происходит разветвление в зависимости от statusCode, полученный на предыдущем шаге: 
+
 При получении statusCode==200 [handling successful responses](src/main/java/ru/dmitry/springboot_camunda_kafka/delegate/SuccessRequestsDelegate.java) - отправляет сообщение вида в топик Kafka **success-requests-topic**
 
 ```
