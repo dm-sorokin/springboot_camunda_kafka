@@ -12,7 +12,9 @@ Camunda process that interacts with Kafka, Postgres Database
 Настройки - [application.yaml](src/main/resources/application.yaml) 
 
 При запуске приложения: 
+
 Создаются таблицы message, counter. Таблицы удалются, если существуют в бд [schema.sql](src/main/resources/schema.sql)
+
 В таблицу counter помещается счетчик, который изначально равен 0 [data.sql](src/main/resources/.data.sql)
 
 ## Как работает?
