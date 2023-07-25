@@ -1,0 +1,13 @@
+{
+    "request": {
+      "method": "POST",
+      "urlPath": "/api/v1/notification",
+      "bodyPatterns": [ {
+      "matchesJsonPath": "$.[?($.key =~ /.*[012345]$/)]"
+    }]
+    },
+    "response": {
+      "status": 200,
+      "body": "success"
+    }
+}

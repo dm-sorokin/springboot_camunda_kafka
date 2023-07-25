@@ -1,0 +1,80 @@
+plugins {
+	id "java"
+	id "idea"
+	id "application"
+	id "org.springframework.boot" version "2.4.5"
+	id "io.spring.dependency-management" version "1.0.11.RELEASE"
+}
+
+// Camunda Spring Boot version compatability
+// https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/version-compatibility/
+
+group "ch.umb.solutions.consulting.camunda"
+version "1.0.0"
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+bootJar {
+	manifest {
+		attributes "Implementation-Version": "${project.version}"
+	}
+}
+
+ext {
+	camundaVersionCE = "7.15.0"
+	camundaVersionEE = "7.15.0-ee"
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencyManagement {
+	imports {
+		// use ${camundaVersionEE} for Camunda EE or ${camundaVersionCE} for Camunda CE version
+		mavenBom "org.camunda.bpm:camunda-bom:${camundaVersionCE}"
+	}
+}
+
+dependencies {
+	implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaVersionCE}"
+	implementation 'org.projectlombok:lombok:1.18.26'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+
+	implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:${camundaVersionCE}"
+	implementation "org.springframework.boot:spring-boot-starter-jdbc"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+
+
+	implementation "org.camunda.spin:camunda-spin-dataformat-all"
+	implementation "org.camunda.bpm:camunda-engine-plugin-spin"
+
+	implementation "org.postgresql:postgresql"
+
+	// Java 11 missing modules
+	implementation "javax.activation:javax.activation-api:1.2.0"
+	implementation "javax.xml.bind:jaxb-api:2.3.1"
+	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.3"
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+
+	testImplementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-test:${camundaVersionCE}"
+	testImplementation "org.camunda.bpm.extension:camunda-bpm-assert-scenario:1.0.0"
+	testImplementation "org.camunda.bpm.extension:camunda-bpm-process-test-coverage:0.4.0"
+	annotationProcessor "org.projectlombok:lombok:1.18.26"
+
+	// for development only, exclude from production build
+	compileOnly "org.springframework.boot:spring-boot-devtools"
+	compileOnly 'org.projectlombok:lombok:1.18.14'
+	compileOnly 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+}
+
+clean {
+	delete 'target'
+}

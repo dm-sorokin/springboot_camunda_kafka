@@ -1,0 +1,13 @@
+{
+    "request": {
+      "method": "POST",
+      "urlPath": "/api/v1/notification",
+      "bodyPatterns": [ {
+      "matchesJsonPath": "$.[?($.key =~ /.*[67]$/)]"
+    }]
+    },
+    "response": {
+      "status": 401,
+      "body": "You should authorize!"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "request": {
+      "method": "POST",
+      "urlPath": "/api/v1/notification",
+      "bodyPatterns": [ {
+      "matchesJsonPath": "$.[?($.key =~ /.*[89]$/)]"
+    }]
+    },
+    "response": {
+      "status": 504,
+      "body": "Try again later!"
+    }
+}
