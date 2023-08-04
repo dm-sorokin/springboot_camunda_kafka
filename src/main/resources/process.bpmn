@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1p8uuv2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.13.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
   <bpmn:process id="Process_184fui2" isExecutable="true">
     <bpmn:extensionElements />
-    <bpmn:serviceTask id="Activity_13hneqe" name="Save Message" camunda:delegateExpression="${saveMessageDelegate}">
+    <bpmn:serviceTask id="Activity_13hneqe" name="Save Message" camunda:asyncBefore="true" camunda:delegateExpression="${saveMessageDelegate}">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0q9238m</bpmn:incoming>
       <bpmn:outgoing>Flow_0eu44pg</bpmn:outgoing>
@@ -13,7 +13,7 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1dwatzf" sourceRef="StartEvent_1" targetRef="Activity_1oxs6t5" />
     <bpmn:sequenceFlow id="Flow_0q9238m" sourceRef="Activity_1oxs6t5" targetRef="Activity_13hneqe" />
-    <bpmn:serviceTask id="Activity_1oxs6t5" name="check for existing Key" camunda:delegateExpression="${checkEntityExistsDelegate}">
+    <bpmn:serviceTask id="Activity_1oxs6t5" name="check for existing Key" camunda:asyncBefore="true" camunda:delegateExpression="${checkEntityExistsDelegate}">
       <bpmn:incoming>Flow_1dwatzf</bpmn:incoming>
       <bpmn:outgoing>Flow_0q9238m</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -36,7 +36,7 @@
       <bpmn:incoming>Flow_1cl0ov7</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1cl0ov7" sourceRef="Gateway_09ynepa" targetRef="Event_1iv2oa7" />
-    <bpmn:serviceTask id="Activity_1pi3v0n" name="Post Notification" camunda:delegateExpression="${postNotificationDelegate}">
+    <bpmn:serviceTask id="Activity_1pi3v0n" name="Post Notification" camunda:asyncBefore="true" camunda:delegateExpression="${postNotificationDelegate}">
       <bpmn:incoming>Flow_1m0c3nw</bpmn:incoming>
       <bpmn:outgoing>Flow_1obtlsw</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -50,11 +50,11 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${statusCode==200}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_18u2p0r" sourceRef="Gateway_1du8ase" targetRef="Activity_1n287kr" />
-    <bpmn:serviceTask id="Activity_0mi2pcq" name="handling successful responses" camunda:delegateExpression="${successRequestsDelegate}">
+    <bpmn:serviceTask id="Activity_0mi2pcq" name="handling successful responses" camunda:asyncBefore="true" camunda:delegateExpression="${successRequestsDelegate}">
       <bpmn:incoming>Flow_1qpbg5y</bpmn:incoming>
       <bpmn:outgoing>Flow_1bl68rj</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1n287kr" name="handling of unsuccessful responses" camunda:delegateExpression="${failedRequestsDelegate}">
+    <bpmn:serviceTask id="Activity_1n287kr" name="handling of unsuccessful responses" camunda:asyncBefore="true" camunda:delegateExpression="${failedRequestsDelegate}">
       <bpmn:incoming>Flow_18u2p0r</bpmn:incoming>
       <bpmn:outgoing>Flow_1etg2ra</bpmn:outgoing>
     </bpmn:serviceTask>
