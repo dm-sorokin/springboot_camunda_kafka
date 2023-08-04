@@ -73,6 +73,12 @@ dependencies {
 	compileOnly "org.springframework.boot:spring-boot-devtools"
 	compileOnly 'org.projectlombok:lombok:1.18.14'
 	compileOnly 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
 }
 
 clean {
