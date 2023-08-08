@@ -75,6 +75,8 @@ dependencies {
 	compileOnly 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.testcontainers:testcontainers:1.14.1"
+	testImplementation "org.testcontainers:kafka:1.14.1"
 }
 
 test {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dmitry.springboot_camunda_kafka.dto.MessageDto;
 
+
 @RestController
 @RequestMapping("/kafka")
 @RequiredArgsConstructor
